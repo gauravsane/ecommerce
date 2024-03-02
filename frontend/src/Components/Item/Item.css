@@ -1,0 +1,156 @@
+.item{
+    width: 250px;
+}
+
+.item p{
+    margin: 6px 0px;
+}
+
+.item img{
+    width: 250px;
+    height: 250px;
+}
+
+.item-prices{
+    display: flex;
+    gap: 20px;
+}
+
+.item-price-new{
+    color: #374151;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.item-price-old{
+    color: #8c8c8c;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.item:hover{
+    transform: scale(1.05);
+    transition: 0.6s;
+}
+
+
+
+
+@media only screen and (max-width: 1400px) {
+    .item{
+        width: 190px;
+        margin: 10px;
+    }
+    .item img{
+        width: 160px;
+        height: 160px;
+    }
+    .item p{
+        margin-left: 10px;
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    .item-price-new,.item-price-old{
+        margin: auto;
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .item{
+        width: 190px;
+        margin: 60px;
+    }
+    .item img{
+        width: 160px;
+        height: 160px;
+    }
+    .item p{
+        margin-left: 10px;
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    .item-price-new,.item-price-old{
+        margin: auto;
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .item{
+        width: 190px;
+        margin: 60px;
+    }
+    .item img{
+        width: 160px;
+        height: 160px;
+    }
+    .item p{
+        margin-left: 10px;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    .item-price-new,.item-price-old{
+        margin: auto;
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .item{
+        width: 190px;
+        margin: 20px;
+    }
+    .item img{
+        width: 160px;
+        height: 160px;
+    }
+    .item p{
+        margin-left: 10px;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+    .item-price-new,.item-price-old{
+        margin: auto;
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .item{
+        width: 180px;
+        margin: 10px;
+    }
+    .item img{
+        width: 200px;
+        height: 200px;
+    }
+    .item p{
+        margin-left: 10px;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+    .item-price-new,.item-price-old{
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .item{
+        width: 80px;
+        margin: 20px;
+        /* border: 2px solid black; */
+    }
+    .item-prices{
+        gap: 2px;
+    }
+    .item img{
+        width: 100px;
+        height: 100px;
+    }
+    .item p{
+        font-size: 8px;
+    }
+    .item-price-new,.item-price-old{
+        margin: auto;
+        font-size: 8px;
+    }
+}
