@@ -40,7 +40,14 @@ const cartReducer = (state = initialState, action) => {
       // let addItem = [];
       const temp = state.cartItems.map((item) => {
         if (item.id === action.payload.id) {
-          item.quantity += 1;
+          if (item.quantity >= 5) {
+            item.quantity = 5;
+            toast.error("Quantity can not be greater than 5");
+            <Toaster />;
+          }
+          else{
+            item.quantity += 1;
+          }
         }
         return item;
       });
@@ -53,10 +60,13 @@ const cartReducer = (state = initialState, action) => {
     case actionTypes.removeItemQty:
       const temp1 = state.cartItems.map((item) => {
         if (item.id === action.payload.id) {
-          // if(item.quantity === 0){
-          //   item.quantity = 1
-          // }
-          item.quantity -= 1;
+          if (item.quantity <= 1) {
+            item.quantity = 1;
+            toast.error("Quantity can not be zero");
+            <Toaster />;
+          } else {
+            item.quantity -= 1;
+          }
         }
         return item;
       });
@@ -65,18 +75,18 @@ const cartReducer = (state = initialState, action) => {
         cartItems: temp1,
       };
 
-      case actionTypes.cartTotalItem:
-        let total_price = state.cartItems.reduce((initialVal, curElem) =>{
-          let { price,quantity } = curElem;
+    case actionTypes.cartTotalItem:
+      let total_price = state.cartItems.reduce((initialVal, curElem) => {
+        let { price, quantity } = curElem;
 
-          initialVal = initialVal + price * quantity;
-          return initialVal;
-        }, 0)
-        console.log(total_price);
-        return {
-          ...state,
-          total_price: total_price,
-        };
+        initialVal = initialVal + price * quantity;
+        return initialVal;
+      }, 0);
+      // console.log(total_price);
+      return {
+        ...state,
+        total_price: total_price,
+      };
     default:
       return state;
   }

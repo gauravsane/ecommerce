@@ -1,29 +1,37 @@
 import React from "react";
 import "./ProductDisplay.css";
-import star_icon from "../Assets/star_icon.png"
-import star_dull_icon from "../Assets/star_dull_icon.png"
+import star_icon from "../Assets/star_icon.png";
+import star_dull_icon from "../Assets/star_dull_icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemQty, addToCart } from "../../actions";
 
 const ProductDisplay = (props) => {
-  const d=useSelector((state)=>state.cartItems)
+  const d = useSelector((state) => state.cartItems);
   // console.log(d);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const { product } = props;
+  // console.log(product);
 
-  const AddToCart = () =>{
-    dispatch(addToCart({id: product._id,name: product.name, image: product.image, price: product.new_price, quantity: product.quantity
-    }));
-  }
+  const AddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product._id,
+        name: product.name,
+        image: product.image,
+        price: product.new_price,
+        quantity: product.quantity,
+      })
+    );
+  };
 
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
         <div className="productdisplay-img-list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={product.image} />
+          <img src={product.image} />
+          <img src={product.image} />
+          <img src={product.image} />
         </div>
         <div className="productdisplay-img">
           <img className="productdisplay-main-img" src={product.image} alt="" />
@@ -49,7 +57,8 @@ const ProductDisplay = (props) => {
           </div>
         </div>
         <div className="productdisplay-right-description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum mollitia totam id provident fugiat in?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum mollitia
+          totam id provident fugiat in?
         </div>
         <div className="productdisplay-right-size">
           <h1>Select Size</h1>
@@ -62,8 +71,12 @@ const ProductDisplay = (props) => {
           </div>
         </div>
         <button onClick={AddToCart}>ADD TO CART</button>
-        <p className="productdisplay-right-category"><span>Category :</span>Women, T-Shirt, Crop-Top</p>
-        <p className="productdisplay-right-category"><span>Tags :</span>Modern, Latest</p>
+        <p className="productdisplay-right-category">
+          <span>Category :</span>Women, T-Shirt, Crop-Top
+        </p>
+        <p className="productdisplay-right-category">
+          <span>Tags :</span>Modern, Latest
+        </p>
       </div>
     </div>
   );

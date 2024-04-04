@@ -1,28 +1,32 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
-    image:{
+    image: {
+        type: String, // Consider storing the URL or path to the image instead of the actual image data
+        required: true
+    },
+    category: {
         type: String,
         required: true
     },
-    category:{
-        type: String,
+    new_price: {
+        type: Number, // Use Number instead of String for numerical values
         required: true
     },
-    new_price:{
-        type: String,
+    old_price: {
+        type: Number, // Use Number instead of String for numerical values
         required: true
     },
-    old_price:{
-        type: String,
-        required: true
+    quantity: {
+        type: Number, // Use Number instead of String for numerical values
+        default: 1
     }
 });
 
-//Create Model
-const backend = new mongoose.model("backend", schema);
+// Create Model
+const backend = mongoose.model("backend", schema);
 module.exports = backend;

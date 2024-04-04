@@ -1,15 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./CartItems.css";
 import remove_icon from "../Assets/cart_cross_icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemQty, cartTotalItem, removeFromCart, removeItemQty } from "../../actions";
+import {
+  addItemQty,
+  cartTotalItem,
+  removeFromCart,
+  removeItemQty,
+} from "../../actions";
 const CartItems = () => {
-  const cart = useSelector((state) => state.cartItems);
-  console.log(cart);
-  const cartTotalItem1 = useSelector((total_price)=>total_price.total_price)
-  console.log('total price',cartTotalItem1);
+  const cart = useSelector((state) => state.cart.cartItems);
+  // console.log(cart);
+  const cartTotalItem1 = useSelector(
+    (total_price) => total_price.cart.total_price
+  );
+  console.log("total price", cartTotalItem1);
   const dispatch = useDispatch();
 
+  const handleCheckOut = () => {};
+
+  useEffect(() => {
+    dispatch(cartTotalItem());
+  });
+
+  // const callback = useCallback(() => {
+  //   return dispatch(cartTotalItem());
+  // }, [cartTotalItem]);
+  // callback();
 
   return (
     <div className="cartitems">
@@ -22,8 +39,8 @@ const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-      {cart.map((e) => {
-        if(e.id) {
+      {cart?.map((e) => {
+        if (e.id) {
           return (
             <div>
               <div className="cartitems-format cartitems-format-main">
@@ -59,7 +76,7 @@ const CartItems = () => {
         }
         return null;
       })}
-      <button onClick={()=>dispatch(cartTotalItem())}>Calculate</button>
+      {/* <button onClick={() => dispatch(cartTotalItem())}>Calculate</button> */}
       <div className="cartitems-down">
         <div className="cartitems-total">
           <h1>Cart Totals</h1>
@@ -85,7 +102,7 @@ const CartItems = () => {
           <p>If you have a promo code, Enter it here</p>
           <div className="cartitems-promobox">
             <input type="text" placeholder="promo code" />
-            <button>Submit</button>
+            <button onClick={handleCheckOut}>Submit</button>
           </div>
         </div>
       </div>
@@ -94,6 +111,7 @@ const CartItems = () => {
 };
 
 export default CartItems;
+
 // {cart.map((e) => {
 //   return (
 //     <div className="cartitems-down">

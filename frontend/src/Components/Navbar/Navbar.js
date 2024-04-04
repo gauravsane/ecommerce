@@ -8,8 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import { useSelector } from "react-redux";
 import { IoMdContact } from "react-icons/io";
-import Dropdown from 'react-bootstrap/Dropdown';
-
+import Dropdown from "react-bootstrap/Dropdown";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -17,8 +16,8 @@ const Navbar = () => {
   const [menu, setMenu] = useState("shop");
   const { getTotalCartItems } = useContext(ShopContext);
 
-  const cart = useSelector((state) => state.cartItems);
-  // console.log(cart.length);
+  const cart = useSelector((state) => state.cart);
+  // console.log(cart.cartItems.length, "cart length");
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -27,31 +26,29 @@ const Navbar = () => {
   const navigate = useNavigate();
   // const location = useLocation();
   // console.log(location);
-  let val = localStorage.getItem('user');
+  let val = localStorage.getItem("user");
   let object = JSON.parse(val);
-  let username = object?.username
+  let username = object?.data?.username;
   // console.log(object.username);
 
-  const logout = () =>{
-    if(localStorage.getItem('user')){
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login');
-    alert('Logout Successfully')
-    }
-    else{
-      alert('Login first')
+  const logout = () => {
+    if (localStorage.getItem("user")) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      navigate("/login");
+      alert("Logout Successfully");
+    } else {
+      alert("Login first");
     }
   };
 
-  const handleClick = () =>{
-    if(localStorage.getItem('token')){
-      navigate('/cart')
+  const handleClick = () => {
+    if (localStorage.getItem("token")) {
+      navigate("/cart");
+    } else {
+      alert("Login first");
     }
-    else{
-      alert('Login first')
-    }
-  }
+  };
 
   return (
     <div className="navbar">
@@ -118,16 +115,25 @@ const Navbar = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>User: {username ? username : <span>No User</span>}</Dropdown.Item>
-            <Dropdown.Item><button onClick={()=>navigate('/login')}>Login</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={logout}>Logout</button></Dropdown.Item>
+            <Dropdown.Item>
+              User: {username ? username : <span>No User</span>}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {username ? (
+                ""
+              ) : (
+                <button onClick={() => navigate("/login")}>Login</button>
+              )}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {username ? <button onClick={logout}>Logout</button> : ""}
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         {/* <h1>{location.state?.id}</h1> */}
         <img onClick={handleClick} src={cart_icon} alt="" />
-          
-        
-        <div className="nav-cart-count">{cart.length}</div>
+
+        <div className="nav-cart-count">{cart.cartItems.length}</div>
       </div>
 
       <div className="btnScreen">
