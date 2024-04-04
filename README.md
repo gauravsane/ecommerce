@@ -4,3 +4,6 @@
 
 ![image](https://github.com/gauravsane/ecommerce/assets/68939352/ad7011c1-47d4-4a29-9245-6f5f7f225505)
 
+![image](https://github.com/gauravsane/ecommerce/assets/68939352/118e6433-36e9-4096-8c2a-bf1f522c41c5)
+
+
